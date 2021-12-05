@@ -5,7 +5,6 @@ using System.Linq;
 namespace AdventOfCode2021.Days
 {
     public class DayOne : IDay
-
     {
     private readonly int[] _reportEntries;
 

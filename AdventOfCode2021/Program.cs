@@ -20,6 +20,10 @@ namespace AdventOfCode2021
                         day = new DayOne();
                         day.Start();
                         break;
+                    case 2:
+                        day = new Day2();
+                        day.Start();
+                        break;
                     case 0:
                         Environment.Exit(0);
                         break;
