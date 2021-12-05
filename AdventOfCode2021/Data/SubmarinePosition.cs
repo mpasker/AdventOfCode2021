@@ -11,8 +11,9 @@ namespace AdventOfCode2021.Data
             {
                 Position = new Dictionary<string, int>
                 {
-                    {"HorizontalPosition", 0},
-                    {"Depth", 0}
+                    {"Distance", 0},
+                    {"Depth", 0},
+                    {"Aim", 0}
                 }
             };
     }

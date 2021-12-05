@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AdventOfCode2021.Data;
 
 namespace AdventOfCode2021.Days
@@ -8,28 +9,38 @@ namespace AdventOfCode2021.Days
         public void Start()
         {
             var parser = new Parser();
-            var submarinePosition = new SubmarinePosition().GetDefaultSubmarinePosition;
+            var initialSubPosition = new SubmarinePosition().GetDefaultSubmarinePosition;
             var submarinePositionChangeCollection = parser.ParseSubmarinePositionChangesFromInput();
 
-            foreach (var positionChange in submarinePositionChangeCollection)
+            var finalSubPosition =
+                CalculateHorizontalPositionAndDepth(initialSubPosition, submarinePositionChangeCollection);
+
+            Console.WriteLine($"Part 1: {finalSubPosition.Position["Aim"] * finalSubPosition.Position["Distance"]}");
+            Console.WriteLine($"Part 2: {finalSubPosition.Position["Depth"] * finalSubPosition.Position["Distance"]}");
+        }
+
+        private SubmarinePosition CalculateHorizontalPositionAndDepth(SubmarinePosition position, IEnumerable<string[]> positionChanges)
+        {
+            foreach (var positionChange in positionChanges)
             {
                 var movement = positionChange[0];
                 var value = int.Parse(positionChange[1]);
                 switch (movement.ToUpper())
                 {
                     case "FORWARD":
-                        submarinePosition.Position["HorizontalPosition"] += value;
+                        position.Position["Distance"] += value;
+                        position.Position["Depth"] += position.Position["Aim"] * value;
                         break;
                     case "DOWN":
-                        submarinePosition.Position["Depth"] += value;
+                        position.Position["Aim"] += value;
                         break;
                     default:
-                        submarinePosition.Position["Depth"] -= value;
+                        position.Position["Aim"] -= value;
                         break;
                 }
             }
 
-            Console.WriteLine($"Part 1: {submarinePosition.Position["HorizontalPosition"] * submarinePosition.Position["Depth"]}");
+            return position;
         }
     }
 }
