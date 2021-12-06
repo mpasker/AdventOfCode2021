@@ -9,17 +9,17 @@ namespace AdventOfCode2021.Days
         public void Start()
         {
             var parser = new Parser();
-            var initialSubPosition = new SubmarinePosition().GetDefaultSubmarinePosition;
+            var initialSubPosition = new SubmarinePosition();
             var submarinePositionChangeCollection = parser.ParseSubmarinePositionChangesFromInput();
 
             var finalSubPosition =
-                CalculateHorizontalPositionAndDepth(initialSubPosition, submarinePositionChangeCollection);
+                UpdatePositionValuesOfSub(initialSubPosition, submarinePositionChangeCollection);
 
-            Console.WriteLine($"Part 1: {finalSubPosition.Position["Aim"] * finalSubPosition.Position["Distance"]}");
-            Console.WriteLine($"Part 2: {finalSubPosition.Position["Depth"] * finalSubPosition.Position["Distance"]}");
+            Console.WriteLine($"Part 1: {finalSubPosition.Aim * finalSubPosition.Distance}");
+            Console.WriteLine($"Part 2: {finalSubPosition.Depth * finalSubPosition.Distance}");
         }
 
-        private SubmarinePosition CalculateHorizontalPositionAndDepth(SubmarinePosition position, IEnumerable<string[]> positionChanges)
+        private SubmarinePosition UpdatePositionValuesOfSub(SubmarinePosition position, IEnumerable<string[]> positionChanges)
         {
             foreach (var positionChange in positionChanges)
             {
@@ -28,14 +28,14 @@ namespace AdventOfCode2021.Days
                 switch (movement.ToUpper())
                 {
                     case "FORWARD":
-                        position.Position["Distance"] += value;
-                        position.Position["Depth"] += position.Position["Aim"] * value;
+                        position.Distance += value;
+                        position.Depth += position.Aim * value;
                         break;
                     case "DOWN":
-                        position.Position["Aim"] += value;
+                        position.Aim += value;
                         break;
                     default:
-                        position.Position["Aim"] -= value;
+                        position.Aim -= value;
                         break;
                 }
             }
