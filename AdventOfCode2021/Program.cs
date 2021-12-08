@@ -18,11 +18,15 @@ namespace AdventOfCode2021
                 {
                     case 1:
                         day = new DayOne();
-                        day.Start();
+                        day.Solve();
                         break;
                     case 2:
                         day = new Day2();
-                        day.Start();
+                        day.Solve();
+                        break;
+                    case 3:
+                        day = new Day3();
+                        day.Solve();
                         break;
                     case 0:
                         Environment.Exit(0);

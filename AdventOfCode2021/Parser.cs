@@ -12,5 +12,12 @@ namespace AdventOfCode2021
                 .Select(p => p.Trim().Split(" ", 2));
 
         }
+
+        public char[][] ParseDiagnosticReport()
+        {
+            return File.ReadAllLines("../../../PuzzleInputs/daythree.txt")
+                .Select(x => x.ToCharArray())
+                .ToArray();
+        }
     }
 }

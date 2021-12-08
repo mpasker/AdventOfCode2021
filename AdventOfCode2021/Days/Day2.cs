@@ -6,7 +6,7 @@ namespace AdventOfCode2021.Days
 {
     public class Day2 : IDay
     {
-        public void Start()
+        public void Solve()
         {
             var parser = new Parser();
             var initialSubPosition = new SubmarinePosition();

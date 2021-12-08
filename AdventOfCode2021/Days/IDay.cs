@@ -2,6 +2,6 @@
 {
     public interface IDay
     {
-        void Start();
+        void Solve();
     }
 }

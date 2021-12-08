@@ -13,7 +13,7 @@ namespace AdventOfCode2021.Days
         _reportEntries = LoadReportEntries();
     }
 
-    public void Start()
+    public void Solve()
     {
         Console.WriteLine($"Part 1: {ReportMeasurementIncreases()}");
         Console.WriteLine($"Part 2: {ReportMeasurementIncreases(3)}");
