@@ -7,25 +7,27 @@ namespace AdventOfCode2021
     {
         public static void Main(string[] args)
         {
+            var parser = new Parser();
+
             Console.WriteLine("Advent of Code 2021");
             var input = -1;
             while (input == -1)
             {
-                input = PromptForDay();
+                input = PromptForDay(parser);
                 IDay day;
 
                 switch (input)
                 {
                     case 1:
-                        day = new DayOne();
+                        day = new DayOne(parser);
                         day.Solve();
                         break;
                     case 2:
-                        day = new Day2();
+                        day = new Day2(parser);
                         day.Solve();
                         break;
                     case 3:
-                        day = new Day3();
+                        day = new Day3(parser);
                         day.Solve();
                         break;
                     case 0:
@@ -38,11 +40,11 @@ namespace AdventOfCode2021
             }
         }
 
-        private static int PromptForDay()
+        private static int PromptForDay(Parser parser)
         {
             Console.WriteLine("Enter a day (1-25). Enter 0 to exit");
             var userInput = Console.ReadLine();
-            return userInput.ParseInput();
+            return parser.ParseUserInput(userInput);
         }
     }
 }

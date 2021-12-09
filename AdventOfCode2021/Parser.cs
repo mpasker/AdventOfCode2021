@@ -1,23 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace AdventOfCode2021
 {
     public class Parser
     {
-        public IEnumerable<string[]> ParseSubmarinePositionChangesFromInput()
+        public IEnumerable<string> ParsePuzzleInput(string filePath)
         {
-            return File.ReadAllLines("../../../PuzzleInputs/daytwo.txt")
-                .Select(p => p.Trim().Split(" ", 2));
-
+            return File.ReadAllLines(filePath);
         }
 
-        public char[][] ParseDiagnosticReport()
+        public int ParseUserInput(string input)
         {
-            return File.ReadAllLines("../../../PuzzleInputs/daythree.txt")
-                .Select(x => x.ToCharArray())
-                .ToArray();
+            var isValid = int.TryParse(input, out var number);
+            if (!isValid) return -1;
+
+            return number;
         }
     }
 }

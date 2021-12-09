@@ -1,37 +1,37 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
     public class DayOne : IDay
     {
-    private readonly int[] _reportEntries;
+        private static Parser _parser;
 
-    public DayOne()
-    {
-        _reportEntries = LoadReportEntries();
-    }
+        public DayOne(Parser parser)
+        {
+            _parser = parser;
+        }
 
-    public void Solve()
-    {
-        Console.WriteLine($"Part 1: {ReportMeasurementIncreases()}");
-        Console.WriteLine($"Part 2: {ReportMeasurementIncreases(3)}");
-    }
+        public void Solve()
+        {
+            Console.WriteLine($"Part 1: {ReportMeasurementIncreases()}");
+            Console.WriteLine($"Part 2: {ReportMeasurementIncreases(3)}");
+        }
 
-    private int ReportMeasurementIncreases(int windowSize = 1)
-    {
-        return _reportEntries
-            .Skip(windowSize)
-            .Select((e, i) => e > _reportEntries[i])
-            .Count(x => x);
-    }
+        private static int ReportMeasurementIncreases(int windowSize = 1)
+        {
+            var reportEntities = LoadReportEntries();
+            return reportEntities
+                .Skip(windowSize)
+                .Select((e, i) => e > reportEntities[i])
+                .Count(x => x);
+        }
 
-    private static int[] LoadReportEntries()
-    {
-        return File.ReadAllLines("../../../PuzzleInputs/dayone.txt")
-            .Select(int.Parse)
-            .ToArray();
-    }
+        private static int[] LoadReportEntries()
+        {
+            return _parser.ParsePuzzleInput("../../../PuzzleInputs/dayone.txt")
+                .Select(int.Parse)
+                .ToArray();
+        }
     }
 }

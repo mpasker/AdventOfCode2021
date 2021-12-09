@@ -7,10 +7,17 @@ namespace AdventOfCode2021.Days
 {
     public class Day3 : IDay
     {
+        private static Parser _parser;
+
+        public Day3(Parser parser)
+        {
+            _parser = parser;
+        }
         public void Solve()
         {
-            var parser = new Parser();
-            var diagnosticReport = parser.ParseDiagnosticReport();
+            var diagnosticReport = _parser.ParsePuzzleInput("../../../PuzzleInputs/daythree.txt")
+                .Select(x => x.ToCharArray())
+                .ToArray();
 
             var columnIndex = 0;
             var diagnosticReportWidth = diagnosticReport[0].Length;

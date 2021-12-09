@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AdventOfCode2021.Data;
 
 namespace AdventOfCode2021.Days
 {
     public class Day2 : IDay
     {
+        private static Parser _parser;
+
+        public Day2(Parser parser)
+        {
+            _parser = parser;
+        }
+
         public void Solve()
         {
-            var parser = new Parser();
             var initialSubPosition = new SubmarinePosition();
-            var submarinePositionChangeCollection = parser.ParseSubmarinePositionChangesFromInput();
+            var submarinePositionChangeCollection = _parser.ParsePuzzleInput("../../../PuzzleInputs/daytwo.txt")
+                .Select(x => x.Trim().Split(" "));
 
             var finalSubPosition =
                 UpdatePositionValuesOfSub(initialSubPosition, submarinePositionChangeCollection);
